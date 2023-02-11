@@ -18,7 +18,7 @@ spec:
         app: mvc-deployment
     spec:
       containers:
-      - image: suiteresearchlab/mvc-app:v2.#{Build:Buildid}#
+      - image: suiteresearchlab/mvc-app:v2.#{$(Build:Buildid)}#
         name: mvc-app
         ports:
         - containerPort: 80
@@ -41,3 +41,4 @@ spec:
       # Optional field
       # By default and for convenience, the Kubernetes control plane will allocate a port from a range (default: 30000-32767)
       # nodePort: 30100
+      # ##[error]invalid argument "***/mvc-app:v2.$(build:buildid)" for "-t, --tag" flag: invalid reference format
