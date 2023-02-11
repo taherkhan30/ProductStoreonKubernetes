@@ -18,7 +18,7 @@ spec:
         app: mvc-deployment
     spec:
       containers:
-      - image: suiteresearchlab/mvc-app:v2.#{Build:Buildid}#
+      - image: suiteresearchlab/mvc-app:#{Build:Buildid}#
         name: mvc-app
         ports:
         - containerPort: 80
