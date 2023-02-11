@@ -8,13 +8,13 @@ EXPOSE 3317
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["MvcApp.csproj", "MvcApp/"]
-RUN dotnet restore "MvcApp/MvcApp.csproj"
+RUN dotnet restore "MvcApp/MvcApp.csproj" -r linux-musl-x64
 COPY . .
 WORKDIR "/src"
 RUN dotnet build "MvcApp.csproj" -c Release -r linux-musl-x64 -o /app/build --no-restore
 
 FROM build AS publish
-RUN dotnet publish "MvcApp.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "MvcApp.csproj" -c Release -r linux-musl-x64 -o /app/publish /p:UseAppHost=false --no-restore
 
 FROM base AS final
 WORKDIR /app  
