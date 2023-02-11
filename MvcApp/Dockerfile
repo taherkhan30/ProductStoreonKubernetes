@@ -8,7 +8,7 @@ EXPOSE 3317
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["MvcApp.csproj", "MvcApp_build/"]
-RUN dotnet restore "MvcApp/MvcApp.csproj"
+RUN dotnet restore "MvcApp.csproj"
 COPY . .
 WORKDIR "/src"
 RUN dotnet build "MvcApp.csproj" -c Release -o /app/build 
